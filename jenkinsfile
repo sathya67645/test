@@ -1,17 +1,17 @@
-#!/bin/groovy
-node (params.nodeName){
-def cfg = [:]
-
-stage('Terraform Init') {
-checkout scm
-tfInit(cfg)
+pipeline{
+            agent {
+                        node{
+                        label 'main'
+                        }
+                    }
+            stages{
+                        stage ('terraform started') {
+                                    steps{
+                                                sh 'echo "Started.....!"'
+                                    }
+                                    
+                        }
+                        
+            }
 }
-stage('Terraform Do') {
-            // Perform Terraform plan/apply/destroy
-            tfDo(cfg)
-        }
-        
 
-
-
-}

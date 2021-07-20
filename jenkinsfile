@@ -6,10 +6,13 @@ pipeleine{
             steps{
                 git branch: 'main', credentialsId: 'b3c8459c-a42a-46b4-b660-991fdc68c559', url: 'https://github.com/sathya67645/test'
              }
+             }
       stage ('terraform Init'){
             steps{
                 sh 'terraform init'
              }
+             }
+            
               stage ('terraform plan'){
             steps{
                 sh 'terraform plan --auto approve'

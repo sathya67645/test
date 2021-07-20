@@ -1,1 +1,17 @@
+#!/bin/groovy
+node (params.nodeName){
+def cfg = [:]
+try {
+stage('Terraform Init') {
+checkout scm
+tfInit(cfg)
+}
+stage('Terraform Do') {
+            // Perform Terraform plan/apply/destroy
+            tfDo(cfg)
+        }
+        
 
+}
+
+}

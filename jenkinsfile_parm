@@ -21,19 +21,19 @@ pipeline{
                         }
                          stage ('terraform plan') {
                                     steps{
-                                       if "${params.action}" EQU ="plan" bat '''terraform ${params.action}'''      
+                                        bat '''terraform ${params.action}'''      
                                     }
                                     
                         }
                          stage ('terraform apply') {
                                     steps{
-                                       if "${params.action}" EQU ="apply" bat '''terraform ${params.action} -auto-approve'''      
+                                        bat '''terraform ${params.action} -auto-approve'''      
                                     }
                                     
                         }
                           stage ('terraform destroy') {
                                     steps{
-                                      if "${params.action}" EQU ="destroy"  bat '''terraform ${params.action} -auto-approve'''      
+                                       bat '''terraform ${params.action} -auto-approve'''      
                                     }
                                     
                         }

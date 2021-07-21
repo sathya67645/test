@@ -14,13 +14,13 @@ pipeline{
                         git branch: 'main', credentialsId: 'b3c8459c-a42a-46b4-b660-991fdc68c559', url: 'https://github.com/sathya67645/test'
                         }
                         }
-                             stage ("terraform init") {
+                             stage ('terraform init') {
                                     steps{
                                         bat "terraform init"     
                                     }
                                     
                         }                   
-                         stage ('terraform ${params.action}') {
+                         stage ('terraform action') {
                                     steps{
                                         bat "terraform ${params.action} ${params.auto_approve}"     
                                     

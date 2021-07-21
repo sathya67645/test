@@ -15,7 +15,12 @@ pipeline{
                                     }
                                     
                         }
-                        
+                         stage ('terraform plan') {
+                                    steps{
+                                        bat '''terraform plan'''      
+                                    }
+                                    
+                        }
             }
 }
 

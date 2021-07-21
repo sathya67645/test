@@ -19,8 +19,14 @@ pipeline{
                                         bat "terraform init"     
                                     }
                                     
-                        }                   
-                         stage ('terraform action') {
+                        }   
+			stage ('terraform plan') {
+                                    steps{
+                                        bat "terraform plan"     
+                                    
+                                    
+                        } 
+                         stage ('terraform apply or destroy') {
                                     steps{
                                         bat "terraform ${params.action} ${params.auto_approve}"     
                                     

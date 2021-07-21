@@ -7,8 +7,8 @@ pipeline {
                 echo "Hello World!oooooooooooooo"
                 echo "Hello World!sjkdhalkfja;dlfjd;lfjd;lfjd"
                 bat "echo Hello from the shell"
-                sh "hostname"
-                sh "uptime"
+                 bat "hostname"
+                bat "uptime"
             }
         }
     }

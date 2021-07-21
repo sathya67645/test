@@ -21,11 +21,16 @@ pipeline{
                         }
                         stage ('terraform action') {
                                     steps{
-                                       bat " terraform ${params.action} " 
+                                       bat " terraform  plan " 
                                     }
                                     
                         }
                         
-                      
+                         stage ('terraform destroy') {
+                                    steps{
+                                        bat "terraform ${params.action} -auto-approve"     
+                                    }
+                                    
+                        } 
             }
 }

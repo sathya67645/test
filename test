@@ -4,7 +4,7 @@ pipeline{
             terraform 'terraform-11'
             }
             parameters {
-         choice(name: 'action', choices: ['init', 'plan', 'apply','destroy'], description: 'terraform action')
+         choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'terraform action')
       
                        }
             stages{
@@ -12,6 +12,12 @@ pipeline{
                         steps{
                         git branch: 'main', credentialsId: 'b3c8459c-a42a-46b4-b660-991fdc68c559', url: 'https://github.com/sathya67645/test'
                         }
+                        }
+                         stage ('terraform init') {
+                                    steps{
+                                       bat " terraform init " 
+                                    }
+                                    
                         }
                         stage ('terraform action') {
                                     steps{

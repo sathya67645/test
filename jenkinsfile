@@ -23,7 +23,13 @@ pipeline{
                         }
                          stage ('terraform apply') {
                                     steps{
-                                        bat '''terraform apply'''      
+                                        bat '''terraform apply -auto-approve'''      
+                                    }
+                                    
+                        }
+                        stage ('terraform destroy') {
+                                    steps{
+                                        bat '''terraform destroy -auto-approve'''      
                                     }
                                     
                         }

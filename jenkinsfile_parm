@@ -15,7 +15,7 @@ pipeline{
                         }
                         stage ('terraform init') {
                                     steps{
-                                       { bat if "${params.action}" EQU ="init"  ''''terraform ${params.action}''' }   
+                                       [ bat if "${params.action}" EQU ="init"  ''''terraform ${params.action}''' ]
                                     }
                                     
                         }

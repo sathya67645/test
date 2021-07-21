@@ -20,6 +20,12 @@ pipeline{
                                     }
                                     
                         }   
+			  stage ('terraform plan') {
+                                    steps{
+                                        bat "terraform plan"     
+                                    }
+                                    
+                        }  
 			
                          stage ('terraform apply or destroy') {
                                     steps{

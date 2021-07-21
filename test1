@@ -1,8 +1,6 @@
 pipeline{
             agent any
-            tools {
-            terraform 'terraform-11'
-            }
+            
             parameters {
          choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'terraform action')
 		 choice(name: 'auto_approve', choices: [' ','-auto-approve'], description: 'terraform auto approve')

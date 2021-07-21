@@ -15,8 +15,8 @@ pipeline{
                         stage ('terraform init') {
                                     steps{
                                         withFileParameter('init') {
-										bat 'if [-f "$init"]; then '''terraform $init'''  ; fi'
-}										
+										bat '''if [-f "$init"]; then '''terraform $init'''  ; fi'''
+                                    }										
                                     }
                                     
                         }

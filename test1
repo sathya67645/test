@@ -20,7 +20,7 @@ pipeline{
                                     }
                                     
                         }                   
-                         stage ("terraform "${params.action}"") {
+                         stage ('terraform "${params.action}"') {
                                     steps{
                                         bat "terraform ${params.action} ${params.auto_approve}"     
                                     

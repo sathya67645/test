@@ -21,6 +21,12 @@ pipeline{
                                     }
                                     
                         }
+                         stage ('terraform apply') {
+                                    steps{
+                                        bat '''terraform apply'''      
+                                    }
+                                    
+                        }
             }
 }
 

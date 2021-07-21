@@ -1,0 +1,25 @@
+pipeline{
+            agent any
+            tools {
+            terraform 'terraform-11'
+            }
+            parameters {
+         choice(name: 'action', choices: ['plan', 'apply','destroy'], description: 'terraform action')
+		 choice(name: 'auto_approve', choices: [' ','-auto-approve'], description: 'terraform auto approve')
+      
+                       }
+            stages{
+                        stage ('git repo'){
+                        steps{
+                        git branch: 'main', credentialsId: 'b3c8459c-a42a-46b4-b660-991fdc68c559', url: 'https://github.com/sathya67645/test'
+                        }
+                        }
+                                              
+                         stage ('terraform action') {
+                                    steps{
+                                        bat "terraform ${params.action} ${params.auto_approve"     
+                                    }
+                                    
+                        } 
+            }
+}

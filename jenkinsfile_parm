@@ -1,0 +1,43 @@
+pipeline{
+            agent any
+            tools {
+            terraform 'terraform-11'
+            }
+			 parameters {
+			terraformaction 'init'
+						}
+            stages{
+                        stage ('git repo'){
+                        steps{
+                        git branch: 'main', credentialsId: 'b3c8459c-a42a-46b4-b660-991fdc68c559', url: 'https://github.com/sathya67645/test'
+                        }
+                        }
+                        stage ('terraform init') {
+                                    steps{
+                                        withFileParameter('init') {
+										bat 'if [-f "$init"]; then '''terraform $init'''  ; fi'
+}										
+                                    }
+                                    
+                        }
+                         stage ('terraform plan') {
+                                    steps{
+                                        bat '''terraform plan'''      
+                                    }
+                                    
+                        }
+                         stage ('terraform apply') {
+                                    steps{
+                                        bat '''terraform apply -auto-approve'''      
+                                    }
+                                    
+                        }
+                          stage ('terraform destroy') {
+                                    steps{
+                                        bat '''terraform destroy -auto-approve'''      
+                                    }
+                                    
+                        }
+                      
+            }
+}

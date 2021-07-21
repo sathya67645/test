@@ -15,7 +15,7 @@ pipeline{
                         }
                         stage ('terraform action') {
                                     steps{
-                                       bat ''''terraform ${params.action}''' 
+                                       bat "''''terraform ${params.action}''' "
                                     }
                                     
                         }

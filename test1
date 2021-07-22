@@ -13,14 +13,32 @@ pipeline{
                                     }
                                     
                         }   
-			 
-			
-                         stage ('terraform apply or destroy') {
+			  stage ('terraform plan') {
+			   when {
+                 expression { params.action == 'plan' }
+        			}
                                     steps{
-                                        bat "terraform ${params.action} ${params.auto_approve}"     
-                                    
-                                    
-                        } 
-            }
-    }
+                                        bat "terraform plan"     
+             					} 
+         				   }
+					   
+				  stage ('terraform apply') {
+			   when {
+                 expression { params.action == 'apply' }
+        			}
+                                    steps{
+                                        bat "terraform apply -auto-approve"     
+             					} 
+         				   }
+					   
+					     stage ('terraform destroy') {
+			   when {
+                 expression { params.action == 'destroy' }
+        			}
+                                    steps{
+                                        bat "terraform destroy -auto-approve"     
+             					} 
+         				   }
+					   
+			   }
 }

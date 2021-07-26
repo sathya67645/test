@@ -26,9 +26,7 @@ pipeline{
 			   when {
                  expression { params.action == 'apply' }
         			}
-				 steps{
-                                        bat "terraform plan"     
-             					} 
+				 
                                     steps{
                                         bat "terraform apply -auto-approve"     
              					} 

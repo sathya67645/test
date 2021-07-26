@@ -7,13 +7,13 @@ pipeline{
       
                        }
             stages{
-                           stage ('terraform init') {
+                           stage ('Initializing') {
                                     steps{
                                         bat "terraform init"     
                                     }
                                     
                         }   
-			  stage ('terraform plan') {
+			  stage ('plan') {
 			   when {
                  expression { params.action == 'plan' }
         			}
@@ -22,21 +22,23 @@ pipeline{
              					} 
          				   }
 					   
-				  stage ('terraform apply') {
+				  stage ('apply') {
 			   when {
                  expression { params.action == 'apply' }
         			}
 				 
                                     steps{
+				    timeout(time:300, unit:'SECONDS') { input message:'Verify Plan & Approve Apply?' }
                                         bat "terraform apply -auto-approve"     
              					} 
          				   }
 					   
-					     stage ('terraform destroy') {
+					     stage ('destroy') {
 			   when {
                  expression { params.action == 'destroy' }
         			}
                                     steps{
+				    timeout(time:180, unit:'SECONDS') { input message:'Approve Destroy?' }
                                         bat "terraform destroy -auto-approve"     
              					} 
          				   }
